@@ -13,14 +13,14 @@ import retrofit2.Response;
  * Created by 帷幕 on 2017/6/15.
  */
 
-public class LoginContactImpl extends Contact implements LoginContact {
-    private LoginGitHubService service = null;
-    public static LoginContactImpl instance;
-    private LoginContactImpl() {
-        service = retrofit.create(LoginGitHubService.class);
+public class LoginContract extends Contact implements LoginInterface {
+    private LoginService service = null;
+    public static LoginContract instance;
+    private LoginContract() {
+        service = retrofit.create(LoginService.class);
     }
-    public static LoginContactImpl getInstance(){
-        instance = new LoginContactImpl();
+    public static LoginContract getInstance(){
+        instance = new LoginContract();
         return instance;
     }
 

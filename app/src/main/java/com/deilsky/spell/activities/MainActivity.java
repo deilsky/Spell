@@ -13,9 +13,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.deilsky.spell.R;
+import com.deilsky.spell.utils.BottomNavigationViewHelper;
 
 public class MainActivity extends AppCompatActivity {
-    private BottomNavigationView navigation;
+    private BottomNavigationView bottomNavigationView;
     private NavigationView navigationView;
 
     @Override
@@ -65,6 +66,12 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_notifications:
 //                    mTextMessage.setText(R.string.title_notifications);
                     return true;
+                case R.id.navigation_home1:
+//                    mTextMessage.setText(R.string.title_home);
+                    return true;
+                case R.id.navigation_dashboard1:
+//                    mTextMessage.setText(R.string.title_dashboard);
+                    return true;
             }
             return false;
         }
@@ -78,12 +85,13 @@ public class MainActivity extends AppCompatActivity {
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(navOnNavigationItemSelectedListener);
-        navigation = (BottomNavigationView) findViewById(R.id.bottomNavView);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
     }
 
     @Override
@@ -98,19 +106,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }

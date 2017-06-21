@@ -12,7 +12,7 @@ import retrofit2.http.POST;
  * Created by 帷幕 on 2017/6/15.
  */
 
-public interface LoginGitHubService {
+public interface LoginService {
     @POST("Account/Login")
     Call<Result<User>> login(@Body LoginModel loginModel);
 }
